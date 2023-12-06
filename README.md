@@ -5,4 +5,4 @@ It took some time for me to figure out houw to transform it into one-hot data.
 
 Thanks to the github code (I am sorry I forget the author), I learn a lot from his code.
 
-T
+Thanks.
