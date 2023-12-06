@@ -38,18 +38,18 @@ allData = allData.join(pd.get_dummies(allData["Sex"], prefix="Sex"))
 # Pclass, change Pclass to one-hot
 allData = allData.join(pd.get_dummies(allData["Pclass"], prefix="Pclass")) 
 # Embarked
-allData[allData["Embarked"].isnull()]  # 查看缺失值
+allData[allData["Embarked"].isnull()]  
 allData.groupby(by=["Pclass", "Embarked"]).Fare.mean()  
 allData["Embarked"] = allData["Embarked"].fillna("C")
 allData = allData.join(pd.get_dummies(allData["Embarked"], prefix="Embarked"))
 
 # Age
-allData["Child"] = allData["Age"].apply(lambda x: 1 if x <= 10 else 0)  # 儿童标签
-allData["Age"] = (allData["Age"] - allData["Age"].mean()) / allData["Age"].std()  # 标准化
-allData["Age"].fillna(value=0, inplace=True)  # 填充缺失值
+allData["Child"] = allData["Age"].apply(lambda x: 1 if x <= 10 else 0)  # label of children
+allData["Age"] = (allData["Age"] - allData["Age"].mean()) / allData["Age"].std()  # Normalization
+allData["Age"].fillna(value=0, inplace=True)  # fill the null value
 
 # Fare
-allData["Fare"] = allData["Fare"].fillna(25)  # 填充缺失值
+allData["Fare"] = allData["Fare"].fillna(25)  # fill the null value
 allData[allData["Survived"].notnull()]["Fare"] = allData[allData["Survived"].notnull()][
     "Fare"
 ].apply(lambda x: 300.0 if x > 500 else x)
@@ -72,7 +72,7 @@ def TitleLabel(s):
     return TitleLabelMap[s]
 
 # allData['TitleLabel'] = allData['Title'].apply(TitleLabel)
-allData = allData.join(pd.get_dummies(allData["Title"], prefix="Title"))  #把文字title转成one hot
+allData = allData.join(pd.get_dummies(allData["Title"], prefix="Title"))  #one-hot
 
 # Ticket
 def TicketLabel(s):
